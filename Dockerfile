@@ -1,12 +1,14 @@
 FROM ubuntu
 MAINTAINER g@npng.org
 
-ADD crontab /etc/cron.d/hello-cron
+VOLUME /config /logs /data
 
-RUN chmod 0644 /etc/cron.d/hello-cron
-RUN touch /var/log/cron.log
+ADD crontab /etc/cron.d/my-cron
+
+RUN chmod 0644 /etc/cron.d/my-cron
+RUN touch /logs/minutely.log /logs/hourly.log /logs/daily.log
 RUN apt-get update
 RUN apt-get -y install cron
 
-CMD /usr/sbin/cron && tail -f /var/log/cron.log
+CMD /usr/sbin/cron && tail -f /logs/*.log
 

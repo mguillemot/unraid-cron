@@ -1,3 +1,4 @@
-* * * * * root echo "Hello world" >> /var/log/cron.log 2>&1
-
+* * * * * root bash /config/minutely.sh >> /logs/minutely.log 2>&1
+0 * * * * root bash /config/hourly.sh   >> /logs/hourly.log   2>&1
+0 0 * * * root bash /config/daily.sh    >> /logs/daily.log    2>&1
 
